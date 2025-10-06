@@ -79,7 +79,7 @@ def title_by_year_range(matches: List[str]) -> List[str]:
     """
     result = []
     for i in range(int(matches[0]),int(matches[1])+1):
-        result.append(title_by_year(i))
+        result.append(title_by_year([i]))
     return result
 
 def title_before_year(matches: List[str]) -> List[str]:
@@ -223,7 +223,18 @@ def search_pa_list(src: List[str]) -> List[str]:
         a list of answers. Will be ["I don't understand"] if it finds no matches and
         ["No answers"] if it finds a match but no answers
     """
-    pass
+    for pat, act in pa_list:
+        print(f"pattern: {pat}, source: {src}, action: {act}")
+        mat = match(pat, src)
+        print(f"match: {mat}")
+
+        if mat is not None:
+            ans = act(mat)
+            print(f"answer: {ans}")
+            return ans if ans else ["No answers"]
+    
+    return ["I don't understand"]
+
 
 
 def query_loop() -> None:
