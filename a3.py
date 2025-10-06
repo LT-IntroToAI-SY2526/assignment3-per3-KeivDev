@@ -78,8 +78,11 @@ def title_by_year_range(matches: List[str]) -> List[str]:
         in ["1991", "1994"] you will get movies made in 1991, 1992, 1993 & 1994)
     """
     result = []
+    n = []
     for i in range(int(matches[0]),int(matches[1])+1):
-        result.append(title_by_year([i]))
+        n = title_by_year[i]
+        if n != [] and n != [[]]:
+            result.append(n)
     return result
 
 def title_before_year(matches: List[str]) -> List[str]:
@@ -266,7 +269,7 @@ if __name__ == "__main__":
     assert sorted(title_by_year(["1974"])) == sorted(
         ["amarcord", "chinatown"]
     ), "failed title_by_year test"
-    assert isinstance(title_by_year_range(["1970", "1972"]), list), "title_by_year_range not returning a list"
+    assert isinstance(title_by_year_range(["1971", "1974"]), list), "title_by_year_range not returning a list"
     assert sorted(title_by_year_range(["1970", "1972"])) == sorted(
         ["the godfather", "johnny got his gun"]
     ), "failed title_by_year_range test"
