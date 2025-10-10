@@ -183,6 +183,8 @@ def actors_by_title(matches: List[str]) -> List[str]:
             result = get_actors(movie)
     return result
 
+def actor_count_by_title(matches: List[str]) -> List[int]:
+    return [len(actors_by_title(matches))]
 
 def year_by_title(matches: List[str]) -> List[int]:
     """Finds year of passed in movie title
@@ -217,6 +219,7 @@ def title_by_actor(matches: List[str]) -> List[str]:
     return result
 
 
+
 # dummy argument is ignored and doesn't matter
 def bye_action(dummy: List[str]) -> None:
     raise KeyboardInterrupt
@@ -235,6 +238,7 @@ pa_list: List[Tuple[List[str], Callable[[List[str]], List[Any]]]] = [
     (str.split("who was the director of %"), director_by_title),
     (str.split("what movies were directed by %"), title_by_director),
     (str.split("who acted in %"), actors_by_title),
+    (str.split("how many people acted in %"), actor_count_by_title),
     (str.split("when was % made"), year_by_title),
     (str.split("in what movies did % appear"), title_by_actor),
     (["bye"], bye_action),
